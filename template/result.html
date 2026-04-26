@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction Result</h1>
+
+        <div class="result {% if prediction == 'High Risk' %}high{% else %}low{% endif %}">
+            <h2>{{ prediction }}</h2>
+        </div>
+
+        <h3>Input Summary</h3>
+        <table>
+            <tr><td>Temperature</td><td>{{ temperature }} °C</td></tr>
+            <tr><td>Humidity</td><td>{{ humidity }} %</td></tr>
+            <tr><td>AQI</td><td>{{ aqi }}</td></tr>
+            <tr><td>PM2.5</td><td>{{ pm25 }} µg/m³</td></tr>
+            <tr><td>PM10</td><td>{{ pm10 }} µg/m³</td></tr>
+        </table>
+
+        <a href="/">← Try Another Prediction</a>
+    </div>
+</body>
+</html>

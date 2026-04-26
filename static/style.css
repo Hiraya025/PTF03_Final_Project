@@ -1,0 +1,16 @@
+body { font-family: Arial, sans-serif; background: #f0f4f8; }
+.container { max-width: 600px; margin: 40px auto; background: white;
+             padding: 30px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+h1 { color: #2c3e50; }
+label { display: block; margin: 12px 0 4px; font-weight: bold; }
+input { width: 100%; padding: 8px; margin-bottom: 8px; border: 1px solid #ccc; border-radius: 5px; }
+button { background: #2980b9; color: white; padding: 10px 20px;
+         border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+button:hover { background: #1a6fa8; }
+.result { text-align: center; padding: 20px; border-radius: 8px; margin: 20px 0; }
+.result.high { background: #fdecea; color: #c0392b; }
+.result.low  { background: #eafaf1; color: #1e8449; }
+.error { color: red; }
+table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+td { padding: 8px; border-bottom: 1px solid #eee; }
+a { display: block; margin-top: 20px; color: #2980b9; }

@@ -8,7 +8,7 @@
 <body>
     <div class="container">
         <h1>🌫️ Air Pollution Health Risk Predictor</h1>
-        <p>Enter current gas and particulate concentrations to assess health risk.</p>
+        <p>Enter current gas and particulate concentrations, and our Random Forest model will predict the AQI and assess the health risk.</p>
 
         {% if error %}
         <p class="error">⚠️ Error: {{ error }}</p>
@@ -39,7 +39,7 @@
             <label>NH3 (Ammonia, µg/m³):
                 <input type="number" step="any" name="nh3" required>
             </label>
-            <button type="submit">Predict Risk</button>
+            <button type="submit">Predict AQI & Risk</button>
         </form>
     </div>
 </body>

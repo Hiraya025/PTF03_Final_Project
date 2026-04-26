@@ -5,16 +5,16 @@ import os
 
 app = Flask(__name__)
 
-# Load model and scaler
+# Fixed paths for Vercel deployment
 base_dir = os.path.dirname(__file__)
 model_path = os.path.join(base_dir, 'model', 'best_model.pkl')
 scaler_path = os.path.join(base_dir, 'model', 'scaler.pkl')
+le_path = os.path.join(base_dir, 'model', 'label_encoder.pkl')
 
+# Load all three models
 model = joblib.load(model_path)
 scaler = joblib.load(scaler_path)
-
-# Risk label mapping
-RISK_LABELS = {0: "Low Risk", 1: "High Risk"}
+label_encoder = joblib.load(le_path)
 
 @app.route('/', methods=['GET'])
 def index():
@@ -23,7 +23,8 @@ def index():
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
-        # Get the 8 specific inputs required by the scaler
+        # Get AQI and the 8 specific inputs
+        aqi = float(request.form['aqi'])
         co = float(request.form['co'])
         no = float(request.form['no'])
         no2 = float(request.form['no2'])
@@ -33,18 +34,18 @@ def predict():
         pm10 = float(request.form['pm10'])
         nh3 = float(request.form['nh3'])
 
-        # Prepare input array — order matches training data components: 
-        # co, no, no2, o3, so2, pm2_5, pm10, nh3
+        # Prepare input array (Only the 8 gases/particulates for the scaler)
         features = np.array([[co, no, no2, o3, so2, pm2_5, pm10, nh3]])
 
         # Scale inputs
         features_scaled = scaler.transform(features)
 
-        # Predict
-        prediction = model.predict(features_scaled)[0]
-        risk_label = RISK_LABELS.get(int(prediction), "Unknown")
+        # Predict numeric value, then decode it to text using the label encoder
+        numeric_prediction = model.predict(features_scaled)
+        risk_label = label_encoder.inverse_transform(numeric_prediction)[0]
 
         return render_template('result.html',
+                               aqi=aqi,
                                prediction=risk_label,
                                co=co, no=no, no2=no2, o3=o3,
                                so2=so2, pm25=pm2_5, pm10=pm10, nh3=nh3)

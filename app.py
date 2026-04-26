@@ -1,12 +1,17 @@
 from flask import Flask, render_template, request
 import joblib
 import numpy as np
+import os
 
 app = Flask(__name__)
 
 # Load model and scaler
-model = joblib.load('model/best_model.pkl')
-scaler = joblib.load('model/scaler.pkl')
+base_dir = os.path.dirname(__file__)
+model_path = os.path.join(base_dir, 'model', 'best_model.pkl')
+scaler_path = os.path.join(base_dir, 'model', 'scaler.pkl')
+
+model = joblib.load(model_path)
+scaler = joblib.load(scaler_path)
 
 # Risk label mapping (adjust based on what your ML Modeler used)
 RISK_LABELS = {0: "Low Risk", 1: "High Risk"}

@@ -7,25 +7,27 @@
 </head>
 <body>
     <div class="container">
-        <h1>Prediction Result</h1>
+        <h1>Health Risk Assessment</h1>
 
-        <div class="result {% if prediction == 'High Risk' %}high{% else %}low{% endif %}">
-            <h2>{{ prediction }}</h2>
+        <div class="result" style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 5px solid #007bff; margin-bottom: 20px;">
+            <h2 style="margin: 0 0 10px 0;">Predicted AQI: <strong>{{ aqi }}</strong></h2>
+            <h2 style="margin: 0;">Risk Level: <strong>{{ interpretation }}</strong></h2>
         </div>
 
-        <h3>Input Summary</h3>
-        <table>
-            <tr><td>CO (Carbon Monoxide)</td><td>{{ co }} µg/m³</td></tr>
-            <tr><td>NO (Nitric Oxide)</td><td>{{ no }} µg/m³</td></tr>
-            <tr><td>NO2 (Nitrogen Dioxide)</td><td>{{ no2 }} µg/m³</td></tr>
-            <tr><td>O3 (Ozone)</td><td>{{ o3 }} µg/m³</td></tr>
-            <tr><td>SO2 (Sulfur Dioxide)</td><td>{{ so2 }} µg/m³</td></tr>
-            <tr><td>PM2.5</td><td>{{ pm25 }} µg/m³</td></tr>
-            <tr><td>PM10</td><td>{{ pm10 }} µg/m³</td></tr>
+        <h3>Pollutant Data Summary</h3>
+        <table style="width: 100%; text-align: left; border-collapse: collapse;">
+            <tr style="border-bottom: 1px solid #ddd;"><td>CO (Carbon Monoxide)</td><td>{{ co }} µg/m³</td></tr>
+            <tr style="border-bottom: 1px solid #ddd;"><td>NO (Nitric Oxide)</td><td>{{ no }} µg/m³</td></tr>
+            <tr style="border-bottom: 1px solid #ddd;"><td>NO2 (Nitrogen Dioxide)</td><td>{{ no2 }} µg/m³</td></tr>
+            <tr style="border-bottom: 1px solid #ddd;"><td>O3 (Ozone)</td><td>{{ o3 }} µg/m³</td></tr>
+            <tr style="border-bottom: 1px solid #ddd;"><td>SO2 (Sulfur Dioxide)</td><td>{{ so2 }} µg/m³</td></tr>
+            <tr style="border-bottom: 1px solid #ddd;"><td>PM2.5</td><td>{{ pm25 }} µg/m³</td></tr>
+            <tr style="border-bottom: 1px solid #ddd;"><td>PM10</td><td>{{ pm10 }} µg/m³</td></tr>
             <tr><td>NH3 (Ammonia)</td><td>{{ nh3 }} µg/m³</td></tr>
         </table>
 
-        <a href="/">← Try Another Prediction</a>
+        <br>
+        <a href="/" style="display: inline-block; padding: 10px 15px; background: #007bff; color: white; text-decoration: none; border-radius: 5px;">← Try Another Prediction</a>
     </div>
 </body>
 </html>

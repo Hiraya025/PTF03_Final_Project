@@ -5,5 +5,8 @@ Naming convention for adding models (Add to /model folder):
 Run on VSCode terminal:
 python -m pip install -r requirements.txt
 
-To run app:
+To run app in terminal:
 python app.py
+
+To run app in onrender:
+https://ptf03-final-project.onrender.com/
